@@ -11,6 +11,7 @@ import styles from './post.module.scss';
 
 import { RichText } from 'prismic-dom'
 import Prismic from '@prismicio/client'
+import { useRouter } from 'next/router';
 
 interface Post {
   first_publication_date: string | null;
@@ -35,6 +36,7 @@ interface PostProps {
 
 export default function Post({post}: PostProps) {
 
+  const router = useRouter()
 
   const timeOfReading = () => {
     const words = post?.data.content.reduce((acm, word) => {
@@ -46,8 +48,7 @@ export default function Post({post}: PostProps) {
     return Math.ceil((words?.split(' ').length) / 200);
   }
 
-  if (!post) return <h1 className={styles.notLoaded}>Carregando...</h1>
-
+  if (router.isFallback) return <h1 className={styles.notLoaded}>Carregando...</h1>
 
   return (
     <main >
@@ -77,7 +78,7 @@ export default function Post({post}: PostProps) {
   )
 }
 
-export const getStaticPaths = async () => {
+export const getStaticPaths: GetStaticPaths = async () => {
   const prismic = getPrismicClient();
   const posts = await prismic.query([
     Prismic.predicates.at('document.type', 'posts')
@@ -85,13 +86,15 @@ export const getStaticPaths = async () => {
 
   const slugs = posts.results.slice(0, 2).map(result => {
     return {
-      slug: result.uid
+      params: {
+        slug: result.uid
+      }
     }
   })
 
   return {
     fallback: true,
-    paths: slugs
+    paths: [...slugs]
   }
   // TODO
 };

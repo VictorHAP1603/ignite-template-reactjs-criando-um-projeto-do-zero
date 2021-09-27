@@ -88,7 +88,7 @@ export const getStaticProps: GetStaticProps = async () => {
       Prismic.predicates.at('document.type', 'posts')
   ], {
     fetch: ['posts.title', 'posts.subtitle', 'posts.author'],
-    pageSize: 2,
+    pageSize: 5,
   });
 
   const posts = postsResponse.results.map(post => {
