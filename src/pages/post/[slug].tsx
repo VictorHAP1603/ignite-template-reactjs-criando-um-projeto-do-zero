@@ -10,6 +10,7 @@ import commonStyles from '../../styles/common.module.scss';
 import styles from './post.module.scss';
 
 import { RichText } from 'prismic-dom'
+import Prismic from '@prismicio/client'
 
 interface Post {
   first_publication_date: string | null;
@@ -78,11 +79,19 @@ export default function Post({post}: PostProps) {
 
 export const getStaticPaths = async () => {
   const prismic = getPrismicClient();
-  // const posts = await prismic.query();
+  const posts = await prismic.query([
+    Prismic.predicates.at('document.type', 'posts')
+  ]);
+
+  const slugs = posts.results.slice(0, 2).map(result => {
+    return {
+      slug: result.uid
+    }
+  })
 
   return {
     fallback: true,
-    paths: []
+    paths: slugs
   }
   // TODO
 };
