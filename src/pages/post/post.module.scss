@@ -1,1 +1,86 @@
-// TODO
+.banner {
+  width: 100%;
+
+  img {
+    width: 100%;
+    max-height: 500px;
+  }
+}
+
+.content {
+  margin-top: 2.5rem;
+}
+
+.headerContent {
+  h1 {
+    color: var(--heading);
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+  }
+
+  div {
+    display: flex;
+
+    p {
+      margin-left: 1.5rem;
+    }
+
+    time, p {
+      color: var(--info);
+
+      display: flex;
+      align-items: center;
+
+      svg {
+        margin-right: 0.5rem;
+      }
+    }
+  }
+
+}
+
+.article {
+  h2 {
+    font-size: 2rem;
+    color: var(--heading);
+
+    margin: 3rem 0;
+  }
+
+  p {
+    color: var(--body);
+  }
+
+  a {
+    color: var(--highlight);
+    font-weight: bold;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  p, ul {
+    margin: 1.5rem 0;
+  }
+
+  ul {
+    padding-left: 1.5rem;
+
+    li {
+        margin: 0.5rem 0;
+        color: var(--body);
+    }
+  }
+}
+
+
+.notLoaded {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+
+  transform: translate(-50%, -50%);
+  color: var(--heading);
+}

@@ -1,1 +1,69 @@
 // TODO
+.post {
+  width: 100%;
+  cursor: pointer;
+
+  strong {
+    font-weight: bold;
+    font-size: 2rem;
+    color: var(--heading);
+    transition: .2s;
+
+  }
+
+  & > p {
+    color: var(--body);
+    margin: 0.5rem 0 1rem;
+    font-size: 1rem;
+
+  }
+
+  &:hover {
+    strong {
+      color: var(--highlight);
+    }
+  }
+
+
+  & + .post {
+    margin-top: 3rem;
+  }
+
+}
+
+
+.infos {
+  display: flex;
+  margin-top: 0.5rem;
+
+  time, p {
+    color: var(--info);
+    display: flex;
+    align-items: center;
+
+    svg {
+      margin-right: 0.4rem;
+    }
+  }
+
+  time {
+    margin-right: 1.25rem;
+    text-transform: capitalize;
+  }
+}
+
+
+.morePosts {
+  color: var(--highlight);
+  background: none;
+  border: none;
+
+  font-size: 1.5rem;
+
+  margin-top:2rem;
+  transition: .2s;
+
+  &:hover {
+    filter: brightness(.7);
+  }
+}
